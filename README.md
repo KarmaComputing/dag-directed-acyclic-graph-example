@@ -64,7 +64,9 @@ Run again:
 ```
 python3 -i main.py
 ```
+# See also
 
+- `dot` bash utility from `graphviz` and https://graphviz.org/doc/info/lang.html for alternate syntax and image generation
 
 
 # Links / further reading
