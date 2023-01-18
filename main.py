@@ -29,11 +29,10 @@ graph = {
 
 # After running this code, un-comment the graph
 # variable below.
-# Notice the only different is that we've not made
-# 666 dependany on 111.
+# Notice the only difference is that we've now made
+# 666 dependant on 111.
 # Run the script again, and watch the different output.
 
-"""
 graph = {
     "111": "333",
     "222": {"111", "333"},
@@ -42,7 +41,6 @@ graph = {
     "555": {"111": "333"},
     "666": {"7", "8", "9", "10", "111"},
 }
-"""
 
 ts = TopologicalSorter(graph)
 
