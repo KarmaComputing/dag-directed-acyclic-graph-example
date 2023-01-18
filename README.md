@@ -18,4 +18,7 @@ Run again:
 python3 -i main.py
 ```
 
+# Links / further reading
 
+- https://en.wikipedia.org/wiki/Directed_acyclic_graph
+- https://stackoverflow.com/questions/54903222/implementing-a-dag-in-python
