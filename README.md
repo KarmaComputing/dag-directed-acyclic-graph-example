@@ -2,7 +2,14 @@
 
 ## Why? Running tests takes longer the more you have- this is especially common in DevOps pupelines
 
+Often in DevOps pipelines, test pipelines get longer and longer to run- especially if tests
+take too long to run.
+
+
 Solution? State interdependent taks, then parrellise them!
+
+> Hint: In addition to this, make your you're failing fast- don't make developers wait 30mins
+  to be told about a lint issue- run *some* quick win tests early.
 
 
 - Read `main.py`
@@ -14,7 +21,9 @@ graph = {222: [333], 333: [111], 555: [], 777: []}
 
 ```
 
-The above graph means task `333` is dependant on task `222`, and task `111` is dependant on task `333` also. Tasks `555`, and `777` have zero depdendancies.
+The above graph means task `333` is dependant on task `222`, and task `111` is dependant on task `333` also. Tasks `555`, and `777` have zero depdendancies. 
+
+What's harder to spot (for me) is actually tasks `111`, `555`, and `777` are not dependant on eachother *at-all*- that's where the `TopologicalSorter` comes in to automatically work out which tests can be ran in parallel! 
 
 The `TopologicalSorter` can work out the optimal arangement as the dependencies get more complex (you still need to state the dependencies correctly though)
 
