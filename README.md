@@ -1,5 +1,8 @@
 # DAGs - directed acyclic graphs
 
+## Why? Running tests takes longer the more you have
+
+Solution? State interdependent taks, then parrellise them!
 
 
 - Read `main.py`
@@ -7,63 +10,38 @@
 Condider the following graph (<small>Taken extract from `main.py`</small>):
 
 ```
-graph = {
-    "111": "333",
-    "222": {"111", "333"},
-    "333": {"111"},
-    "444": {"111", "333"},
-    "555": {"111": "333"},
-    "666": {"7", "8", "9", "10"},
-}
-```
-
-The above graph will produce the following output when ran:
-
-```
-We can run in parallel: ('3', '8', '10', '9', '7')
-We can run in parallel: ('111', '666')
-We can run in parallel: ('333', '555')
-We can run in parallel: ('222', '444')
-```
-
-Now consider this different graph (with the only different is that we've now made
-666 dependant on 111:
-
-```
-graph = {
-    "111": "333",
-    "222": {"111", "333"},
-    "333": {"111"},
-    "444": {"111", "333"},
-    "555": {"111": "333"},
-    "666": {"7", "8", "9", "10", "111"},
-}
+graph = {222: [333], 333: [111], 555: [], 777: []}
 
 ```
 
-Will produce the following output:
+The above graph means task `333` is dependant on task `222`, and task `111` is dependant on task `333` also. Tasks `555`, and `777` have zero depdendancies.
 
-```
-We can run in parallel: ('3', '10', '9', '7', '8')
-We can run in parallel: ('111',)
-We can run in parallel: ('333', '555', '666')
-We can run in parallel: ('222', '444')
-```
+The `TopologicalSorter` can work out the optimal arangement as the dependencies get more complex (you still need to state the dependencies correctly though)
+
 
 ## Usage:
 
 Run:
+
 ```
 python3 -i main.py
 ```
 
-Edit code (edit `graph`)
+Output example:
+```
+Running tests as fast as possible
+Starting to run tests (111, 555, 777) in parallel
+Running test_111
+Running test_555
+Running test_777
+Starting to run tests (333,) in parallel
+Running test_333
+1111
+Starting to run tests (222,) in parallel
+Running test_222
+```
 
 
-Run again:
-```
-python3 -i main.py
-```
 # See also
 
 - `dot` bash utility from `graphviz` and https://graphviz.org/doc/info/lang.html for alternate syntax and image generation
