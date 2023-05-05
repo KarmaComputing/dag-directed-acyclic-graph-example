@@ -1,6 +1,6 @@
 # DAGs - directed acyclic graphs
 
-## Why? Running tests takes longer the more you have- this is especially common in DevOps pupelines
+## Why? Running tests takes longer the more you have- this is especially common in DevOps pipelines
 
 Often in DevOps pipelines, test pipelines get longer and longer to run- especially if tests
 take too long to run.
