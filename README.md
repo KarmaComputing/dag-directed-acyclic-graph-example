@@ -1,6 +1,6 @@
 # DAGs - directed acyclic graphs
 
-## Why? Running tests takes longer the more you have
+## Why? Running tests takes longer the more you have- this is especially common in DevOps pupelines
 
 Solution? State interdependent taks, then parrellise them!
 
