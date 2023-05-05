@@ -4,7 +4,7 @@
 
 Often in DevOps pipelines, test pipelines get longer and longer to run- the feedback loop gets longer and longer.
 
-Solution? State interdependent task, then parallelise them using DAGs!
+Solution? State interdependent tasks, then parallelise them using DAGs!
 
 
 > Hint: In addition to this, make your you're failing fast- don't make developers wait 30mins
