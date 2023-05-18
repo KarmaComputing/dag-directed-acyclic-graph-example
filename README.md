@@ -2,6 +2,9 @@
 
 ## Why? Running tests takes longer the more you have- this is especially common in DevOps pupelines
 
+>  **Note**
+> This is cool! Are you looking to make complex Playwright tests faster? See [Playwright example branch](https://github.com/KarmaComputing/dag-directed-acyclic-graph-example/tree/playwright).
+
 Often in DevOps pipelines, test pipelines get longer and longer to run- especially if tests
 take too long to run.
 
