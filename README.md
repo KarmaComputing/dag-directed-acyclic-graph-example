@@ -1,5 +1,7 @@
 # Run *complex* playwright tests in parallel using DAGs - directed acyclic graphs
 
+https://github.com/KarmaComputing/dag-directed-acyclic-graph-example/assets/1718624/48b8831c-6a04-4aef-91b7-abd83210cf35
+
 ## Why? Running tests takes longer the more you have- especially common in Playwright tests and DevOps pipelines
 
 Often in DevOps pipelines, test suite pipelines get longer and longer to run- especially if tests
