@@ -1,6 +1,6 @@
 # DAGs - directed acyclic graphs
 
-## Why? Running tests takes longer the more you have- this is especially common in DevOps pupelines
+## Why? Running tests takes longer the more you have- this is especially common in DevOps pipelines
 
 >  **Note**
 > This is cool! Are you looking to make complex Playwright tests faster? See [Playwright example branch](https://github.com/KarmaComputing/dag-directed-acyclic-graph-example/tree/playwright).
@@ -8,8 +8,8 @@
 Often in DevOps pipelines, test pipelines get longer and longer to run- especially if tests
 take too long to run.
 
+Solution? State interdependent tasks, then parallelise them using DAGs!
 
-Solution? State interdependent taks, then parrellise them!
 
 > Hint: In addition to this, make your you're failing fast- don't make developers wait 30mins
   to be told about a lint issue- run *some* quick win tests early.
