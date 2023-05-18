@@ -1,14 +1,15 @@
-# DAGs - directed acyclic graphs
+# Run *complex* playwright tests in parallel using DAGs - directed acyclic graphs
 
-## Why? Running tests takes longer the more you have- this is especially common in DevOps pupelines
+## Why? Running tests takes longer the more you have- especially common in Playwright tests and DevOps pipelines
 
-Often in DevOps pipelines, test pipelines get longer and longer to run- especially if tests
+Often in DevOps pipelines, test suite pipelines get longer and longer to run- especially if tests
 take too long to run.
 
+This becomes a problem especially is tests must run in a certain order- and you're watiing a long time if other, non-dependant tests are ran sequentially.
 
-Solution? State interdependent taks, then parrellise them!
+Solution? State interdependent taks, then parrellise those that can be ran in parallel!
 
-> Hint: In addition to this, make your you're failing fast- don't make developers wait 30mins
+> Hint: In addition to this, make sure you're failing fast- don't make developers wait 30mins
   to be told about a lint issue- run *some* quick win tests early.
 
 
@@ -27,29 +28,49 @@ What's harder to spot (for me) is actually tasks `111`, `555`, and `777` are not
 
 The `TopologicalSorter` can work out the optimal arangement as the dependencies get more complex (you still need to state the dependencies correctly though)
 
+## Install
+
+Install playwright dependencies.
+```
+npm install
+```
 
 ## Usage:
 
 Run:
 
 ```
-python3 -i main.py
+python3 main.py
 ```
 
 Output example:
+
+> Notice that test `@five` is held back because we've said it's
+  dependant on test `@one` and `@three`:
 ```
+$ python3 -i main.py
 Running tests as fast as possible
-Starting to run tests (111, 555, 777) in parallel
-Running test_111
-Running test_555
-Running test_777
-Starting to run tests (333,) in parallel
-Running test_333
-1111
-Starting to run tests (222,) in parallel
-Running test_222
+Starting to run tests ('@one', '@two', '@three', '@four') in parallel
+Running test @one
+Running test @two
+Running test @three
+Running test @four
+...
+...
+Starting to run tests ('@five',) in parallel
+Running test @five
 ```
 
+# Why not just use [Playwright Parallelism and sharding](https://playwright.dev/docs/test-parallel)?
+
+If your tests are truly (and *can*) be truly independant of eachother, you've no need for this, but if you
+want to simulate interdependant tests *without* suffering extreemly long pipeline durations, expressing
+their interdependencies in a DAG (see `main.py` `graph` for an example).
+
+> Note because of this approach, we actually turn *off* Playwrights built-in parallelism (see `playwright.config.ts` where `fullyParallel: false` and `workers` set to `1`),
+ and workers by replacing that with python's `multiprocessing` so you still get the speed 
+ benefits, with the added benefit of using a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) to
+ express test dependencies using `graphlib`'s [`TopologicalSorter`](https://docs.python.org/3/library/graphlib.html#graphlib.TopologicalSorter).
 
 # See also
 

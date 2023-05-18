@@ -1,13 +1,6 @@
 from graphlib import TopologicalSorter
-from tests import (
-    test_111,
-    test_222,
-    test_333,
-    test_555,
-    test_666,
-    test_777,
-)  # noqa: E501
 import multiprocessing
+import subprocess
 
 
 """
@@ -23,7 +16,10 @@ This code automatically works out which tests can run in parallel
 # will treat that as "3", "3", and "3" ).
 # To overcome that, put the values (depenants) as lists with single
 # elements. e.g. ["333"]
-graph = {222: [333], 333: [111], 555: [], 777: []}
+#
+# Here we pretend that test named @five is dependant on tests
+# names @one and @three
+graph = {"@one": [], "@two": [], "@three": [], "@four": [], "@five": ["@one", "@three"]}
 
 ts = TopologicalSorter(graph)
 
@@ -37,8 +33,12 @@ def test(ts):
 
 
 # Function to run a test based on it's number
-def run_test(test_number: int):
-    eval(f"test_{test_number}()")
+def run_test(test_name: int):
+    print(f"Running test {test_name}")
+    subprocess.run(
+        f"npx playwright test --grep {test_name} --headed",
+        shell=True,
+    )
 
 
 print("Running tests as fast as possible")

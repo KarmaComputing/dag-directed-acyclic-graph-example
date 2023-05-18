@@ -1,0 +1,24 @@
+{
+  "name": "dags",
+  "version": "1.0.0",
+  "description": "## Why? Running tests takes longer the more you have- this is especially common in DevOps pupelines",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarmaComputing/dag-directed-acyclic-graph-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KarmaComputing/dag-directed-acyclic-graph-example/issues"
+  },
+  "homepage": "https://github.com/KarmaComputing/dag-directed-acyclic-graph-example#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.33.0"
+  }
+}

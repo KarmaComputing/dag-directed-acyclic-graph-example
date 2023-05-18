@@ -3,3 +3,8 @@ __pycache__
 venv
 *.swp
 out.svg
+node_modules/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+test-results/*
